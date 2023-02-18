@@ -1,9 +1,12 @@
 package com.ertu.weddingplanner.guest;
 
+import com.ertu.weddingplanner.mail.MailService;
+import jakarta.mail.MessagingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -12,21 +15,26 @@ public class GuestService {
 
     private final GuestRepository guestRepository;
 
+    private final MailService mailService;
+
     @Autowired
-    public GuestService(GuestRepository guestRepository) {
+    public GuestService(GuestRepository guestRepository, MailService mailService) {
         this.guestRepository = guestRepository;
+        this.mailService = mailService;
     }
 
     public List<Guest> getGuests() {
         return guestRepository.findAll();
     }
 
-    public void createGuest(Guest guest) {
+    public void createGuest(Guest guest) throws MessagingException, IOException {
         Optional<Guest> guestOptional = guestRepository.findGuestByEmail(guest.getEmail());
         if (guestOptional.isPresent()) {
             throw new IllegalStateException("email taken");
         }
         guestRepository.save(guest);
+
+        mailService.sendHtmlMail(guest.getEmail(), "Thank you for joining our wedding");
     }
 
     @Transactional
