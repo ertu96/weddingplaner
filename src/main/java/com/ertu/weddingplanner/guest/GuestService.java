@@ -34,7 +34,7 @@ public class GuestService {
         }
         guestRepository.save(guest);
 
-        mailService.sendHtmlMail(guest.getEmail(), "Thank you for joining our wedding");
+        mailService.sendHtmlMail(guest, "Thank you for joining our wedding");
     }
 
     @Transactional
