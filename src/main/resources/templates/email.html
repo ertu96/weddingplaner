@@ -3,16 +3,42 @@
   <head>
     <title>Vielen Dank</title>
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <style>
+      body {
+        background-color: #fff;
+        color: #795218;
+      }
+      .outer-container {
+        max-width: 600px;
+        margin: 0 auto;
+        border: 3px solid #795218;
+        padding: 0.25rem;
+      }
+      .inner-container {
+        border: 2px solid #795218;
+        padding: 2.5rem;
+      }
+      .logo-text {
+        font-weight: lighter;
+        text-align: center;
+      }
+    </style>
   </head>
   <body>
-    <p>Hi, <span>{{name}}</span>!</p>
-    <p>
-      Deine Anmeldung für die Teilnahme an unserer Hochzeit ist eingegangen.
-    </p>
-    <p>Du kannst deine Antwort jederzeit bearbeiten.</p>
-    <p>
-      Viele Grüße, <br />
-      <em>Familie Kurnaz</em>
-    </p>
+    <div class="outer-container">
+      <div class="inner-container">
+        <h1 class="logo-text">E | E</h1>
+
+        <h3>Hallo <span>{{name}}</span>,</h3>
+        <p>
+          Deine Anmeldung für die Teilnahme an unserer Hochzeit ist eingegangen.
+        </p>
+        <p>Du kannst deine Antwort jederzeit bearbeiten.</p>
+        <p>
+          Viele Grüße, <br />
+          <em>Familie Kurnaz</em>
+        </p>
+      </div>
+    </div>
   </body>
 </html>
