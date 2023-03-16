@@ -74,8 +74,8 @@ public class Guest {
         return isAttending;
     }
 
-    public void setAttending(boolean attending) {
-        isAttending = attending;
+    public void setIsAttending(boolean isAttending) {
+        this.isAttending = isAttending;
     }
 
     public int getAdditionalGuests() {
