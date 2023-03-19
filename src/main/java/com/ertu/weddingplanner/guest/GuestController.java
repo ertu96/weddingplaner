@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "guest")
+@CrossOrigin(origins = "https://elisabeth-ertugrul.netlify.app/", allowedHeaders = "Content-Type, Authorization", methods = {RequestMethod.GET, RequestMethod.POST})
 public class GuestController {
 
     private final GuestService guestService;
