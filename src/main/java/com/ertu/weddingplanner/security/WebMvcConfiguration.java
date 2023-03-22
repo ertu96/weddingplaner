@@ -13,7 +13,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
 
         registry
-                .addMapping("/**")
+                .addMapping("/api")
                 .allowedOrigins("https://elisabeth-ertugrul.netlify.app")
                 .allowedMethods("GET", "POST")
                 .allowedHeaders("Content-Type", "Authorization");
