@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "https://elisabeth-ertugrul.netlify.app")
 @RequestMapping(path = "guest")
 public class GuestController {
 
@@ -29,7 +30,6 @@ public class GuestController {
         return guestService.getGuest(guestId);
     }
 
-    @CrossOrigin(origins = "https://elisabeth-ertugrul.netlify.app")
     @PostMapping
     public void addGuest(@RequestBody Guest guest) throws MessagingException, IOException {
         guestService.createGuest(guest);
