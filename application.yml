@@ -27,3 +27,8 @@ server:
     include-message: always
   servlet:
     context-path: /api
+springdoc:
+  swagger-ui:
+    path: /swagger
+    writer-with-default-pretty-printer: 'true'
+    operationsSorter: method

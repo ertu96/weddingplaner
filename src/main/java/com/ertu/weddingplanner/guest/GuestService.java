@@ -27,6 +27,10 @@ public class GuestService {
         return guestRepository.findAll();
     }
 
+    public Optional<Guest> getGuest(Long id) {
+        return guestRepository.findById(id);
+    }
+
     public void createGuest(Guest guest) throws MessagingException, IOException {
         Optional<Guest> guestOptional = guestRepository.findGuestByEmail(guest.getEmail());
         if (guestOptional.isPresent()) {

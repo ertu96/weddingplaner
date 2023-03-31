@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "guest")
@@ -21,6 +22,11 @@ public class GuestController {
     @GetMapping
     public List<Guest> getGuests() {
         return guestService.getGuests();
+    }
+
+    @GetMapping("{guestId}")
+    public Optional<Guest> getGuest(@PathVariable Long guestId) {
+        return guestService.getGuest(guestId);
     }
 
     @PostMapping
