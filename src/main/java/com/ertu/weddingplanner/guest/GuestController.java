@@ -29,6 +29,7 @@ public class GuestController {
         return guestService.getGuest(guestId);
     }
 
+    @CrossOrigin(origins = "https://elisabeth-ertugrul.netlify.app")
     @PostMapping
     public void addGuest(@RequestBody Guest guest) throws MessagingException, IOException {
         guestService.createGuest(guest);

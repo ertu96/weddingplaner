@@ -15,7 +15,7 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
         registry
                 .addMapping("/api")
                 .allowedOrigins("https://elisabeth-ertugrul.netlify.app")
-                .allowedMethods("GET", "POST")
+                .allowedMethods("POST")
                 .allowedHeaders("Content-Type", "Authorization");
     }
 }
