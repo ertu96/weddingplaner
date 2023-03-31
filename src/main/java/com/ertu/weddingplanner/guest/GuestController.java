@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "https://elisabeth-ertugrul.netlify.app")
+@CrossOrigin(origins = "https://elisabeth-ertugrul.netlify.app", methods = {RequestMethod.POST})
 @RequestMapping(path = "guest")
 public class GuestController {
 
