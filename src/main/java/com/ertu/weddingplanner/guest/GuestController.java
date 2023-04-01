@@ -39,12 +39,12 @@ public class GuestController {
     public void editGuest(
             @PathVariable("guestId") Long guestId,
             @RequestParam(required = false) String name) {
-        guestService.updateGuest(guestId, name);
+//        guestService.updateGuest(guestId, name);
     }
 
     @DeleteMapping("{guestId}")
     public void removeGuest(@PathVariable("guestId") Long guestId) {
-        guestService.deleteGuest(guestId);
+//        guestService.deleteGuest(guestId);
     }
 
 }
