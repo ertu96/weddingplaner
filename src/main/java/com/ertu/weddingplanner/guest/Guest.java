@@ -1,5 +1,6 @@
 package com.ertu.weddingplanner.guest;
 
+import com.ertu.weddingplanner.Locale;
 import jakarta.persistence.*;
 
 @Entity
@@ -26,24 +27,29 @@ public class Guest {
     @Column(columnDefinition = "TEXT")
     private String comment;
 
+    @Enumerated(EnumType.STRING)
+    private Locale locale;
+
     public Guest() {
     }
 
-    public Guest(long id, String name, String email, boolean isAttending, int additionalGuests, String comment) {
+    public Guest(long id, String name, String email, boolean isAttending, int additionalGuests, String comment, Locale locale) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.isAttending = isAttending;
         this.additionalGuests = additionalGuests;
         this.comment = comment;
+        this.locale = locale;
     }
 
-    public Guest(String name, String email, boolean isAttending, int additionalGuests, String comment) {
+    public Guest(String name, String email, boolean isAttending, int additionalGuests, String comment, Locale locale) {
         this.name = name;
         this.email = email;
         this.isAttending = isAttending;
         this.additionalGuests = additionalGuests;
         this.comment = comment;
+        this.locale = locale;
     }
 
     public long getId() {
@@ -94,6 +100,14 @@ public class Guest {
         this.comment = comment;
     }
 
+    public Locale getLocale() {
+        return locale;
+    }
+
+    public void setLocale(Locale locale) {
+        this.locale = locale;
+    }
+
     @Override
     public String toString() {
         return "Guest{" +
@@ -103,6 +117,7 @@ public class Guest {
                 ", isAttending=" + isAttending +
                 ", additionalGuests=" + additionalGuests +
                 ", comment='" + comment + '\'' +
+                ", locale=" + locale +
                 '}';
     }
 }
