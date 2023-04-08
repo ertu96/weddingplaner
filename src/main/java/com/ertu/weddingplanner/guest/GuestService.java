@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,14 +30,14 @@ public class GuestService {
         return guestRepository.findById(id);
     }
 
-    public void createGuest(Guest guest) throws MessagingException, IOException {
+    public void createGuest(Guest guest) throws MessagingException {
         Optional<Guest> guestOptional = guestRepository.findGuestByEmail(guest.getEmail());
         if (guestOptional.isPresent()) {
             throw new IllegalStateException("email taken");
         }
         guestRepository.save(guest);
 
-        mailService.sendHtmlMail(guest, "Thank you for joining our wedding");
+        mailService.sendHtmlMail(guest);
     }
 
     @Transactional
