@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +31,7 @@ public class GuestService {
         return guestRepository.findById(id);
     }
 
-    public void createGuest(Guest guest) throws MessagingException {
+    public void createGuest(Guest guest) throws MessagingException, UnsupportedEncodingException {
         Optional<Guest> guestOptional = guestRepository.findGuestByEmail(guest.getEmail());
         if (guestOptional.isPresent()) {
             throw new IllegalStateException("email taken");

@@ -3,6 +3,7 @@ package com.ertu.weddingplanner.mail;
 import com.ertu.weddingplanner.Locale;
 import com.ertu.weddingplanner.guest.Guest;
 import jakarta.mail.MessagingException;
+import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 @Service
@@ -27,7 +29,7 @@ public class MailService {
         this.templateEngine = templateEngine;
     }
 
-    public void sendHtmlMail(Guest guest) throws MessagingException {
+    public void sendHtmlMail(Guest guest) throws MessagingException, UnsupportedEncodingException {
         Context context = new Context();
         context.setVariable("name", guest.getName());
         String process = templateEngine.process(chooseTemplate(guest.getLocale(), guest.isAttending()), context);
@@ -35,7 +37,7 @@ public class MailService {
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mimeMessage);
         helper.setSubject(getSubject(guest.getLocale()));
-        helper.setFrom("ertugrul-kurnaz@outlook.com");
+        helper.setFrom(new InternetAddress("elisabeth.ertugrul@gmail.com", "Elisabeth & Ertugrul Kurnaz"));
         helper.setText(process, true);
         helper.setTo(guest.getEmail());
         mailSender.send(mimeMessage);
