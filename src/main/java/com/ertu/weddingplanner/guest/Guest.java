@@ -2,7 +2,7 @@ package com.ertu.weddingplanner.guest;
 
 import com.ertu.weddingplanner.Locale;
 import jakarta.persistence.*;
-import org.springframework.data.annotation.CreatedDate;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -33,7 +33,7 @@ public class Guest {
     @Enumerated(EnumType.STRING)
     private Locale locale;
 
-    @CreatedDate
+    @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
