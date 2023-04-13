@@ -2,6 +2,7 @@ package com.ertu.weddingplanner.guest;
 
 import com.ertu.weddingplanner.Locale;
 import jakarta.persistence.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -34,7 +35,8 @@ public class Guest {
     private Locale locale;
 
     @CreationTimestamp
-    @Column(name = "created_at", nullable = false, updatable = false)
+    @ColumnDefault("0")
+    @Column(name = "created_at")
     private LocalDateTime createdAt;
 
     public Guest() {
