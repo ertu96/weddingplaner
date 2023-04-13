@@ -2,6 +2,9 @@ package com.ertu.weddingplanner.guest;
 
 import com.ertu.weddingplanner.Locale;
 import jakarta.persistence.*;
+import org.springframework.data.annotation.CreatedDate;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table
@@ -29,6 +32,10 @@ public class Guest {
 
     @Enumerated(EnumType.STRING)
     private Locale locale;
+
+    @CreatedDate
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
 
     public Guest() {
     }
@@ -108,16 +115,11 @@ public class Guest {
         this.locale = locale;
     }
 
-    @Override
-    public String toString() {
-        return "Guest{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", isAttending=" + isAttending +
-                ", additionalGuests=" + additionalGuests +
-                ", comment='" + comment + '\'' +
-                ", locale=" + locale +
-                '}';
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
     }
 }
