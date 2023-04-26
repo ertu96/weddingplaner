@@ -11,4 +11,7 @@ public interface GuestRepository extends JpaRepository<Guest, Long> {
     @Query("SELECT s FROM Guest s WHERE s.email = ?1")
     Optional<Guest> findGuestByEmail(String email);
 
+    @Query("SELECT SUM(s.additionalGuests)+COUNT(s.id) as total_guest FROM Guest s WHERE s.isAttending=true")
+    int getTotalGuests();
+
 }

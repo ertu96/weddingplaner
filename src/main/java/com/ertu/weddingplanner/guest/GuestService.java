@@ -56,6 +56,8 @@ public class GuestService {
         }
         guestRepository.deleteById(guestId);
     }
-
-
+    
+    public int getGuestsCount() {
+        return guestRepository.getTotalGuests();
+    }
 }

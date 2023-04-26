@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = "https://elisabeth-ertugrul.netlify.app", methods = {RequestMethod.POST})
+@CrossOrigin(origins = {"http://127.0.0.1:5173/", "https://elisabeth-ertugrul.netlify.app"}, methods = {RequestMethod.GET, RequestMethod.POST})
 @RequestMapping(path = "guest")
 public class GuestController {
 
@@ -28,6 +28,11 @@ public class GuestController {
     @GetMapping("{guestId}")
     public Optional<Guest> getGuest(@PathVariable Long guestId) {
         return guestService.getGuest(guestId);
+    }
+
+    @GetMapping("count")
+    public int getGuestsCount() {
+        return guestService.getGuestsCount();
     }
 
     @PostMapping
