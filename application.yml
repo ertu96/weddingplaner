@@ -19,9 +19,9 @@ spring:
           auth: 'true'
     password: ${MAIL_PASSWORD}
   datasource:
-    password: ${DATASOURCE_PASSWORD}
-    username: ${DATASOURCE_USERNAME}
     url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
 server:
   error:
     include-message: always

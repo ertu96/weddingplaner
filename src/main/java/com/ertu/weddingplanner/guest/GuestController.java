@@ -9,7 +9,16 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin(origins = {"http://127.0.0.1:5173/", "https://elisabeth-ertugrul.netlify.app"}, methods = {RequestMethod.GET, RequestMethod.POST})
+@CrossOrigin(
+        origins = {
+                "http://localhost:5173/",
+                "https://elisabeth-ertugrul.netlify.app",
+                "https://meliha-ali.netlify.app"},
+        methods = {
+                RequestMethod.GET,
+                RequestMethod.POST
+        }
+)
 @RequestMapping(path = "guest")
 public class GuestController {
 
@@ -40,16 +49,5 @@ public class GuestController {
         guestService.createGuest(guest);
     }
 
-    @PutMapping("{guestId}")
-    public void editGuest(
-            @PathVariable("guestId") Long guestId,
-            @RequestParam(required = false) String name) {
-//        guestService.updateGuest(guestId, name);
-    }
-
-    @DeleteMapping("{guestId}")
-    public void removeGuest(@PathVariable("guestId") Long guestId) {
-//        guestService.deleteGuest(guestId);
-    }
 
 }
