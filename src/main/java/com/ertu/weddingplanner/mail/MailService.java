@@ -48,23 +48,24 @@ public class MailService {
         helper.setTo(guest.getEmail());
         helper.setText(process, true);
 
-        // Create a MimeMultipart to hold both HTML content and .ics attachment
-        MimeMultipart multipart = new MimeMultipart();
+        if (guest.isAttending()) {
+            // Create a MimeMultipart to hold both HTML content and .ics attachment
+            MimeMultipart multipart = new MimeMultipart();
 
-        // Create MimeBodyPart for HTML content
-        MimeBodyPart htmlPart = new MimeBodyPart();
-        htmlPart.setContent(process, "text/html; charset=utf-8");
-        multipart.addBodyPart(htmlPart);
+            // Create MimeBodyPart for HTML content
+            MimeBodyPart htmlPart = new MimeBodyPart();
+            htmlPart.setContent(process, "text/html; charset=utf-8");
+            multipart.addBodyPart(htmlPart);
 
-        // Create MimeBodyPart for .ics file attachment
-        MimeBodyPart attachmentPart = new MimeBodyPart();
-        attachmentPart.setDataHandler(new DataHandler(new IcsDataSource())); // Provide your own DataSource implementation
-        attachmentPart.setFileName("event.ics"); // Set the filename of the attachment
-        multipart.addBodyPart(attachmentPart);
+            // Create MimeBodyPart for .ics file attachment
+            MimeBodyPart attachmentPart = new MimeBodyPart();
+            attachmentPart.setDataHandler(new DataHandler(new IcsDataSource())); // Provide your own DataSource implementation
+            attachmentPart.setFileName("event.ics"); // Set the filename of the attachment
+            multipart.addBodyPart(attachmentPart);
 
-        // Set the multipart as the content of the message
-        mimeMessage.setContent(multipart);
-
+            // Set the multipart as the content of the message
+            mimeMessage.setContent(multipart);
+        }
         // Send the email
         mailSender.send(mimeMessage);
     }
