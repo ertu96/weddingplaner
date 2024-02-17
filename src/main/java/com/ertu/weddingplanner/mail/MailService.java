@@ -3,7 +3,6 @@ package com.ertu.weddingplanner.mail;
 import com.ertu.weddingplanner.Locale;
 import com.ertu.weddingplanner.guest.Guest;
 import jakarta.activation.DataHandler;
-import jakarta.activation.DataSource;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.internet.MimeBodyPart;
@@ -16,9 +15,6 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
@@ -62,7 +58,7 @@ public class MailService {
 
         // Create MimeBodyPart for .ics file attachment
         MimeBodyPart attachmentPart = new MimeBodyPart();
-        attachmentPart.setDataHandler(new DataHandler(new MyDataSource())); // Provide your own DataSource implementation
+        attachmentPart.setDataHandler(new DataHandler(new IcsDataSource())); // Provide your own DataSource implementation
         attachmentPart.setFileName("event.ics"); // Set the filename of the attachment
         multipart.addBodyPart(attachmentPart);
 
@@ -105,48 +101,12 @@ public class MailService {
     private String getSubject(Locale locale) {
         Map<Locale, String> subjects = Map.of(
                 Locale.AR, "تسجيلك لحفل زفافنا",
-                Locale.DE, "Ihre Anmeldung zu unserer Hochzeit",
+                Locale.DE, "Deine Anmeldung zu unserer Hochzeit",
                 Locale.GB, "Your registration for our wedding",
                 Locale.TR, "Düğünümüz için kaydınız",
                 Locale.JP, "私たちの結婚式のためのあなたの登録",
                 Locale.RU, "Ваша регистрация на нашу свадьбу"
         );
         return subjects.getOrDefault(locale, "");
-    }
-
-}
-
-// Custom DataSource implementation for providing .ics file content
-class MyDataSource implements DataSource {
-    @Override
-    public InputStream getInputStream() {
-        // Provide the content of your .ics file as an InputStream
-        String icsContent = """
-                BEGIN:VCALENDAR
-                VERSION:2.0
-                PRODID:-//hacksw/handcal//NONSGML v1.0//EN
-                BEGIN:VEVENT
-                SUMMARY: Hochzeit Meliha & Ali
-                DTSTART;VALUE=DATE:20240310
-                DTEND;VALUE=DATE:20240311
-                LOCATION: Platin Eventlocation - Bremerhavener Str. 25, 50735 Köln
-                END:VEVENT
-                END:VCALENDAR""";
-        return new ByteArrayInputStream(icsContent.getBytes());
-    }
-
-    @Override
-    public OutputStream getOutputStream() {
-        return null; // Not needed for read-only access
-    }
-
-    @Override
-    public String getContentType() {
-        return "text/calendar; charset=utf-8"; // Set the content type of the .ics file
-    }
-
-    @Override
-    public String getName() {
-        return "hochzeit-einladung.ics"; // Set the filename of the .ics file
     }
 }
