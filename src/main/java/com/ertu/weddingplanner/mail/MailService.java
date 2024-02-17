@@ -44,7 +44,7 @@ public class MailService {
 
         // Set subject, sender, recipient, and HTML content
         helper.setSubject(getSubject(guest.getLocale()));
-        helper.setFrom(new InternetAddress("elesa6899@gmail.com", "Elisabeth & Ertugrul Kurnaz"));
+        helper.setFrom(new InternetAddress("ali.meliha.2024@gmail.com", "Meliha & Ali"));
         helper.setTo(guest.getEmail());
         helper.setText(process, true);
 
