@@ -16,11 +16,14 @@ public class IcsDataSource implements DataSource {
                 PRODID:-//hacksw/handcal//NONSGML v1.0//EN
                 BEGIN:VEVENT
                 SUMMARY: Hochzeit Meliha & Ali
-                DTSTART;VALUE=DATE:20240310
-                DTEND;VALUE=DATE:20240311
-                LOCATION: Platin Eventlocation - Bremerhavener Str. 25, 50735 Köln
+                ORGANIZER;CN="Meliha & Ali":mailto:ali.meliha.2024@gmail.com
+                DTSTART:20240310T160000
+                DTEND:20240311T000000
+                LOCATION;CHARSET=UTF-8: Platin Eventlocation - Bremerhavener Str. 25, 50735 Köln
                 END:VEVENT
                 END:VCALENDAR""";
+
+
         return new ByteArrayInputStream(icsContent.getBytes());
     }
 
